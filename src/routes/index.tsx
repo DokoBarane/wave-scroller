@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ContactForm } from "@/components/ContactForm";
 import { Hero } from "@/components/Hero";
 import { Section, SectionMedia } from "@/components/Section";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -133,19 +134,8 @@ function HomePage() {
             Reach our team for sea freight planning, agency coordination, and tanktainer
             logistics support.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="mailto:marina@vyomshipping.com"
-              className="rounded-full gradient-brand px-6 py-3 text-sm font-semibold text-primary-foreground shadow-soft transition-transform hover:scale-[1.03]"
-            >
-              Email Us
-            </a>
-            <a
-              href="tel:+6592723370"
-              className="rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-secondary"
-            >
-              Call Singapore Desk
-            </a>
+          <div className="mt-10 max-w-4xl">
+            <ContactForm />
           </div>
         </Section>
       </main>
