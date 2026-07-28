@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import wordmark from "@/assets/vyom-wordmark-v2.png.asset.json";
+import logo from "@/assets/vyom-mark-v2.png.asset.json";
 
 const NAV_ITEMS = [
   { label: "Services", hash: "services" },
@@ -23,9 +23,9 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-3.5 sm:px-8">
         <Link to="/" className="flex items-center" aria-label="Vyom Global Logistics home">
           <img
-            src={wordmark.url}
+            src={logo.url}
             alt="Vyom Global Logistics"
-            className="h-8 w-auto brightness-0 invert sm:h-9"
+            className="h-8 w-auto sm:h-9"
           />
         </Link>
 
