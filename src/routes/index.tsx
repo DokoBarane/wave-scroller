@@ -127,7 +127,6 @@ function HomePage() {
         <ParallaxBand
           src={cargoShipAsset.url}
           alt="Container ship carrying tanktainers across open ocean"
-          caption="Cross-border sea freight planning across Asia and beyond"
         />
 
 
