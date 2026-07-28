@@ -101,7 +101,35 @@ function OfficeRows({ office }: { office: AgencyOffice }) {
 }
 
 function NetworkPage() {
-  const countryCount = new Set(agencyNetwork.map((office: AgencyOffice) => office.country)).size;
+  const [selectedCountry, setSelectedCountry] = useState<string>("all");
+  const [selectedLocation, setSelectedLocation] = useState<string>("all");
+
+  const countries = useMemo(
+    () => Array.from(new Set(agencyNetwork.map((office) => office.country))).sort((a, b) => a.localeCompare(b)),
+    [],
+  );
+
+  const filteredOffices = useMemo(() => {
+    return agencyNetwork.filter((office) => {
+      const countryMatch = selectedCountry === "all" || office.country === selectedCountry;
+      const locationMatch = selectedLocation === "all" || office.location === selectedLocation;
+      return countryMatch && locationMatch;
+    });
+  }, [selectedCountry, selectedLocation]);
+
+  const availableLocations = useMemo(() => {
+    const source = selectedCountry === "all" ? agencyNetwork : agencyNetwork.filter((o) => o.country === selectedCountry);
+    return Array.from(new Set(source.map((office) => office.location))).sort((a, b) => a.localeCompare(b));
+  }, [selectedCountry]);
+
+  const countryCount = new Set(filteredOffices.map((office) => office.country)).size;
+
+  const clearFilters = () => {
+    setSelectedCountry("all");
+    setSelectedLocation("all");
+  };
+
+  const hasActiveFilters = selectedCountry !== "all" || selectedLocation !== "all";
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,6 +141,67 @@ function NetworkPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           Agency Network Directory
         </h1>
+
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
+          <div className="w-full sm:w-56">
+            <label htmlFor="country-filter" className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Country
+            </label>
+            <Select value={selectedCountry} onValueChange={(value) => {
+              setSelectedCountry(value);
+              if (value !== "all" && selectedLocation !== "all") {
+                const stillValid = agencyNetwork.some(
+                  (o) => o.country === value && o.location === selectedLocation,
+                );
+                if (!stillValid) setSelectedLocation("all");
+              }
+            }}>
+              <SelectTrigger id="country-filter" className="h-10 text-sm">
+                <SelectValue placeholder="All countries" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All countries</SelectItem>
+                {countries.map((country) => (
+                  <SelectItem key={country} value={country}>
+                    {country}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="w-full sm:w-56">
+            <label htmlFor="location-filter" className="mb-1.5 block text-xs font-medium text-muted-foreground">
+              Location
+            </label>
+            <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+              <SelectTrigger id="location-filter" className="h-10 text-sm">
+                <SelectValue placeholder="All locations" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">All locations</SelectItem>
+                {availableLocations.map((location) => (
+                  <SelectItem key={location} value={location}>
+                    {location}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {hasActiveFilters && (
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={clearFilters}
+              className="h-10 gap-1.5 px-4"
+            >
+              <X className="h-4 w-4" />
+              Clear filters
+            </Button>
+          )}
+        </div>
 
         <div className="mt-8 overflow-x-auto rounded-2xl border border-border shadow-soft">
           <table className="w-full border-collapse text-left">
@@ -130,7 +219,7 @@ function NetworkPage() {
               </tr>
             </thead>
             <tbody>
-              {agencyNetwork.map((office: AgencyOffice) => (
+              {filteredOffices.map((office: AgencyOffice) => (
                 <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
               ))}
             </tbody>
@@ -138,7 +227,7 @@ function NetworkPage() {
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Showing {agencyNetwork.length} office locations across {countryCount} countries.{" "}
+          Showing {filteredOffices.length} office {filteredOffices.length === 1 ? "location" : "locations"} across {countryCount} {countryCount === 1 ? "country" : "countries"}.{" "}
           <Link to="/" className="text-primary hover:underline">
             Return to single-scroll homepage.
           </Link>
