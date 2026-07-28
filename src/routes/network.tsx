@@ -151,14 +151,7 @@ function NetworkPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader variant="network" />
       <main className="mx-auto max-w-[90rem] px-5 pb-20 pt-32 sm:px-8 sm:pt-40">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gradient-brand">
-          Network
-        </p>
-        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-          Agency Network Directory
-        </h1>
-
-        <Tabs defaultValue="agency" className="mt-6">
+        <Tabs defaultValue="agency" className="mt-2 flex flex-col items-center">
           <TabsList className="h-auto flex-wrap gap-1 rounded-xl bg-muted p-1">
             <TabsTrigger value="agency" className="rounded-lg px-4 py-2 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-soft">
               Agency
@@ -171,7 +164,7 @@ function NetworkPage() {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent value="local-charges" className="mt-8">
+          <TabsContent value="local-charges" className="mt-8 w-full">
             <div className="rounded-2xl border border-border bg-card px-6 py-16 text-center shadow-soft">
               <h2 className="text-xl font-semibold text-foreground">Local Charges</h2>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -180,7 +173,7 @@ function NetworkPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="downloads" className="mt-8">
+          <TabsContent value="downloads" className="mt-8 w-full">
             <div className="rounded-2xl border border-border bg-card px-6 py-16 text-center shadow-soft">
               <h2 className="text-xl font-semibold text-foreground">Downloads</h2>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -189,7 +182,13 @@ function NetworkPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="agency" className="mt-0">
+          <TabsContent value="agency" className="mt-8 w-full">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gradient-brand">
+          Network
+        </p>
+        <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+          Agency Network Directory
+        </h1>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
 
           <div className="w-full sm:w-56">
