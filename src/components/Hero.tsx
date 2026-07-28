@@ -1,6 +1,15 @@
 import { useSectionScrollProgress } from "@/hooks/use-scroll-motion";
 import heroImage from "@/assets/vyom-hero.jpg.asset.json";
 
+const COUNTRIES = [
+  "Singapore",
+  "Malaysia",
+  "Indonesia",
+  "Thailand",
+  "India",
+  "UAE",
+];
+
 export function Hero() {
   const { ref, progress } = useSectionScrollProgress<HTMLElement>();
   const scale = 1 - progress * 0.08;
