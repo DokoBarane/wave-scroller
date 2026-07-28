@@ -8,9 +8,9 @@ export function SiteFooter() {
         <div className="flex items-center gap-3">
           <img src={mark.url} alt="" aria-hidden="true" className="h-9 w-auto" loading="lazy" />
           <div>
-            <p className="text-sm font-semibold text-foreground">Vyom Global Logistics</p>
+            <p className="text-sm font-semibold text-foreground">Vyom Global Logistics (S) Pte Ltd</p>
             <p className="text-xs text-muted-foreground">
-              Sea freight, tanktainer and agency coordination across Asia.
+              #02-05, Southpoint 200 Cantonment Road Singapore 089763
             </p>
           </div>
         </div>
@@ -18,12 +18,6 @@ export function SiteFooter() {
           <Link to="/network" className="transition-colors hover:text-foreground">
             Agency Network
           </Link>
-          <a href="mailto:marina@vyomshipping.com" className="transition-colors hover:text-foreground">
-            marina@vyomshipping.com
-          </a>
-          <a href="tel:+6592723370" className="transition-colors hover:text-foreground">
-            +65 9272 3370
-          </a>
         </div>
       </div>
     </footer>
