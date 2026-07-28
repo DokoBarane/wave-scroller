@@ -110,7 +110,9 @@ function HomePage() {
         >
           <p className="text-lg leading-relaxed text-muted-foreground">
             Vyom combines decades of operational freight expertise with agile execution. Our
-            teams coordinate tank container and dry cargo shipments through tightly connected
+            management team carries an average experience of more than two decades in sea freight
+            solutions, including specialized liquid cargo logistics. This depth of knowledge shapes
+            how we coordinate tank container and dry cargo shipments through tightly connected
             agency offices across key trade corridors.
           </p>
         </Section>
