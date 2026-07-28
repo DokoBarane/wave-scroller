@@ -1,15 +1,19 @@
-Add two dropdown filters directly under the "Agency Network Directory" heading on `/network`:
+## Goal
+Paginate the Agency Network Directory table with a page-size selector (10 / 20 / 50, default 10), while keeping the Country and Location filters applied across the whole dataset (not just the current page).
 
-1. **Country filter** — a `<Select>` dropdown populated with the unique countries from `agencyNetwork` data, plus an "All countries" option.
-2. **Location filter** — a `<Select>` dropdown populated with the unique locations from `agencyNetwork` data, plus an "All locations" option. Optionally narrow the location list to the selected country.
+## How it works
+1. Filtering stays first: `filteredOffices` is computed from the full `agencyNetwork` list, exactly as today. Pagination is applied only after filtering, so filters always search all data, not the visible page.
+2. New state in `src/routes/network.tsx`: `pageSize` (default 10) and `page` (default 1).
+3. Paged slice: `pagedOffices = filteredOffices.slice((page - 1) * pageSize, page * pageSize)`; the table body renders that slice. One office row group (office + its contacts) counts as one item, so grouped rows never split across pages.
+4. Reset behaviour: changing Country, Location, page size, or clearing filters resets to page 1. If the current page goes out of range after filtering, it clamps to the last valid page.
 
-Implementation details:
-- Use the existing `src/components/ui/select.tsx` component to match the site's shadcn style.
-- Add React state (`selectedCountry`, `selectedLocation`) in `src/routes/network.tsx`.
-- Filter the rendered `agencyNetwork` array before mapping it into table rows.
-- Update the "Showing X office locations across Y countries" summary to reflect the filtered count.
-- Lay out the two filters horizontally on desktop and stacked on mobile, with a "Clear filters" reset button.
-- Keep the current table width and font-size adjustments intact.
+## UI
+- Below the table: a footer bar with
+  - left: "Rows per page" dropdown (10, 20, 50) using the existing shadcn Select, matching the filter dropdown style;
+  - center/right: "Showing X–Y of Z office locations" text (replacing/merging with the existing summary line, keeping the "Return to homepage" link);
+  - right: Previous / Next buttons plus numbered page buttons, using the existing shadcn Pagination component if present, otherwise plain Buttons in the same brand style. Prev/Next disable at the boundaries.
+- Existing compact typography and brand styling are preserved.
 
-Files changed:
-- `src/routes/network.tsx`
+## Technical notes
+- Only `src/routes/network.tsx` changes; no data or component-library changes required.
+- All derived values use `useMemo`; no new dependencies.
