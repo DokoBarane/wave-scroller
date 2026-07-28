@@ -11,7 +11,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 export const Route = createFileRoute("/network")({
   head: () => ({
@@ -124,12 +124,26 @@ function NetworkPage() {
 
   const countryCount = new Set(filteredOffices.map((office) => office.country)).size;
 
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [page, setPage] = useState<number>(1);
+
+  const total = filteredOffices.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const currentPage = Math.min(page, totalPages);
+  const startIndex = (currentPage - 1) * pageSize;
+  const pagedOffices = useMemo(
+    () => filteredOffices.slice(startIndex, startIndex + pageSize),
+    [filteredOffices, startIndex, pageSize],
+  );
+
   const clearFilters = () => {
     setSelectedCountry("all");
     setSelectedLocation("all");
+    setPage(1);
   };
 
   const hasActiveFilters = selectedCountry !== "all" || selectedLocation !== "all";
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -149,6 +163,7 @@ function NetworkPage() {
             </label>
             <Select value={selectedCountry} onValueChange={(value) => {
               setSelectedCountry(value);
+              setPage(1);
               if (value !== "all" && selectedLocation !== "all") {
                 const stillValid = agencyNetwork.some(
                   (o) => o.country === value && o.location === selectedLocation,
@@ -156,6 +171,7 @@ function NetworkPage() {
                 if (!stillValid) setSelectedLocation("all");
               }
             }}>
+
               <SelectTrigger id="country-filter" className="h-10 text-sm">
                 <SelectValue placeholder="All countries" />
               </SelectTrigger>
@@ -174,7 +190,7 @@ function NetworkPage() {
             <label htmlFor="location-filter" className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Location
             </label>
-            <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+            <Select value={selectedLocation} onValueChange={(value) => { setSelectedLocation(value); setPage(1); }}>
               <SelectTrigger id="location-filter" className="h-10 text-sm">
                 <SelectValue placeholder="All locations" />
               </SelectTrigger>
@@ -219,19 +235,82 @@ function NetworkPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredOffices.map((office: AgencyOffice) => (
+              {pagedOffices.map((office: AgencyOffice) => (
                 <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
               ))}
             </tbody>
           </table>
         </div>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          Showing {filteredOffices.length} office {filteredOffices.length === 1 ? "location" : "locations"} across {countryCount} {countryCount === 1 ? "country" : "countries"}.{" "}
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <label htmlFor="page-size" className="text-xs font-medium text-muted-foreground">
+              Rows per page
+            </label>
+            <Select value={String(pageSize)} onValueChange={(value) => { setPageSize(Number(value)); setPage(1); }}>
+              <SelectTrigger id="page-size" className="h-9 w-[5.5rem] text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {[10, 20, 50].map((size) => (
+                  <SelectItem key={size} value={String(size)}>
+                    {size}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            {total === 0
+              ? "No offices match the selected filters."
+              : `Showing ${startIndex + 1}–${Math.min(startIndex + pageSize, total)} of ${total} office ${total === 1 ? "location" : "locations"} across ${countryCount} ${countryCount === 1 ? "country" : "countries"}.`}
+          </p>
+
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage <= 1}
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Prev
+            </Button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <Button
+                key={p}
+                type="button"
+                variant={p === currentPage ? "default" : "outline"}
+                size="sm"
+                className="h-9 w-9 p-0"
+                onClick={() => setPage(p)}
+              >
+                {p}
+              </Button>
+            ))}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        <p className="mt-4 text-sm text-muted-foreground">
           <Link to="/" className="text-primary hover:underline">
             Return to single-scroll homepage.
           </Link>
         </p>
+
       </main>
       <SiteFooter />
     </div>
