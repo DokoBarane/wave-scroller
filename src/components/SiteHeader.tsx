@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import markAsset from "@/assets/vyom-mark-v3.png.asset.json";
+import wordmarkAsset from "@/assets/vyom-wordmark-v4.png.asset.json";
 
 
 const NAV_ITEMS = [
@@ -56,14 +56,11 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
           aria-label="Vyom Global Logistics home"
         >
           <img
-            src={markAsset.url}
+            src={wordmarkAsset.url}
             alt="Vyom"
             className="h-8 w-auto sm:h-9"
             loading="eager"
           />
-          <span className="font-sans text-2xl font-medium lowercase leading-none tracking-[-0.02em] text-white sm:text-[1.75rem]">
-            vyom
-          </span>
         </Link>
 
 
