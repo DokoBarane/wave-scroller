@@ -121,48 +121,6 @@ function NetworkPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           Agency Network Directory
         </h1>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Filter by country or search by location, company, and contact details. Data is
-          prepared from the latest agency workbook shared on 28 July.
-        </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-[2fr_1fr]">
-          <div>
-            <label
-              htmlFor="network-search"
-              className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-            >
-              Search
-            </label>
-            <input
-              id="network-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search country, port, company, contact"
-              className="mt-2 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="network-country"
-              className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-            >
-              Country
-            </label>
-            <select
-              id="network-country"
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-ring"
-            >
-              <option>All countries</option>
-              {agencyCountries.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </div>
-        </div>
 
         <div className="mt-8 overflow-x-auto rounded-2xl border border-border shadow-soft">
           <table className="w-full border-collapse text-left">
