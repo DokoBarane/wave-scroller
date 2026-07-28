@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+
 import mark from "@/assets/vyom-mark.png.asset.json";
 
 export function SiteFooter() {
@@ -16,11 +16,6 @@ export function SiteFooter() {
               © {new Date().getFullYear()} Vyom Global Logistics. All rights reserved.
             </p>
           </div>
-        </div>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-          <Link to="/network" className="transition-colors hover:text-foreground">
-            Agency Network
-          </Link>
         </div>
       </div>
     </footer>
