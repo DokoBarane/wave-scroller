@@ -5,11 +5,9 @@ import { useSectionScrollProgress } from "@/hooks/use-scroll-motion";
 export function ParallaxBand({
   src,
   alt,
-  caption,
 }: {
   src: string;
   alt: string;
-  caption: string;
 }) {
   const { ref, progress } = useSectionScrollProgress<HTMLDivElement>();
   const [reduced, setReduced] = useState(false);
@@ -38,11 +36,6 @@ export function ParallaxBand({
       />
       <div className="absolute inset-0 bg-brand-dark/55" />
       <div className="absolute inset-0 gradient-brand opacity-25 mix-blend-multiply" />
-      <div className="relative mx-auto flex h-full max-w-7xl items-end px-5 pb-10 sm:px-8 sm:pb-14">
-        <p className="max-w-2xl text-2xl font-semibold leading-snug tracking-tight text-primary-foreground sm:text-3xl">
-          {caption}
-        </p>
-      </div>
     </div>
   );
 }
