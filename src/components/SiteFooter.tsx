@@ -18,12 +18,6 @@ export function SiteFooter() {
           <Link to="/network" className="transition-colors hover:text-foreground">
             Agency Network
           </Link>
-          <a href="mailto:marina@vyomshipping.com" className="transition-colors hover:text-foreground">
-            marina@vyomshipping.com
-          </a>
-          <a href="tel:+6592723370" className="transition-colors hover:text-foreground">
-            +65 9272 3370
-          </a>
         </div>
       </div>
     </footer>
