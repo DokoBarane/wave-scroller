@@ -42,9 +42,15 @@ const RESOURCES = [
   "Terms, conditions, and operations documentation",
 ];
 
-function PointList({ items }: { items: string[] }) {
+function PointList({
+  items,
+  columns = 3,
+}: {
+  items: string[];
+  columns?: 1 | 3;
+}) {
   return (
-    <ul className="grid gap-5 md:grid-cols-3">
+    <ul className={`grid gap-5 ${columns === 3 ? "md:grid-cols-3" : ""}`}>
       {items.map((item, index) => (
         <li
           key={item}
@@ -67,8 +73,18 @@ function HomePage() {
       <main>
         <Hero />
 
-        <Section id="services" label="Services" title="Built for demanding cargo flows">
-          <PointList items={SERVICES} />
+        <Section
+          id="services"
+          label="Services"
+          title="Built for demanding cargo flows"
+          media={
+            <SectionMedia
+              src={tankStackAsset.url}
+              alt="Blue-framed tank containers stacked several tiers high at a depot"
+            />
+          }
+        >
+          <PointList items={SERVICES} columns={1} />
         </Section>
 
         <Section
@@ -80,13 +96,31 @@ function HomePage() {
           <PointList items={RESOURCES} />
         </Section>
 
-        <Section id="about" label="About Us" title="Experience-led logistics built to scale">
-          <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+        <Section
+          id="about"
+          label="About Us"
+          title="Experience-led logistics built to scale"
+          mediaSide="left"
+          media={
+            <SectionMedia
+              src={cargoShipAsset.url}
+              alt="Aerial view of a fully loaded container ship under way at sea"
+            />
+          }
+        >
+          <p className="text-lg leading-relaxed text-muted-foreground">
             Vyom combines decades of operational freight expertise with agile execution. Our
             teams coordinate tank container and dry cargo shipments through tightly connected
             agency offices across key trade corridors.
           </p>
         </Section>
+
+        <ParallaxBand
+          src={cargoShipAsset.url}
+          alt="Container ship carrying tanktainers across open ocean"
+          caption="Cross-border sea freight planning across Asia and beyond"
+        />
+
 
         <Section
           id="contact"
