@@ -1,13 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import {
-  agencyCountries,
-  agencyNetwork,
-  officeSearchText,
-  type AgencyOffice,
-} from "@/data/agencyNetwork";
+import { agencyNetwork, type AgencyOffice } from "@/data/agencyNetwork";
 
 export const Route = createFileRoute("/network")({
   head: () => ({
@@ -97,19 +91,7 @@ function OfficeRows({ office }: { office: AgencyOffice }) {
 }
 
 function NetworkPage() {
-  const [query, setQuery] = useState("");
-  const [country, setCountry] = useState("All countries");
-
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    return agencyNetwork.filter((office) => {
-      const matchesCountry = country === "All countries" || office.country === country;
-      const matchesQuery = needle.length === 0 || officeSearchText(office).includes(needle);
-      return matchesCountry && matchesQuery;
-    });
-  }, [query, country]);
-
-  const countryCount = new Set(filtered.map((office) => office.country)).size;
+  const countryCount = new Set(agencyNetwork.map((office: AgencyOffice) => office.country)).size;
 
   return (
     <div className="min-h-screen bg-background">
@@ -121,48 +103,6 @@ function NetworkPage() {
         <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
           Agency Network Directory
         </h1>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-          Filter by country or search by location, company, and contact details. Data is
-          prepared from the latest agency workbook shared on 28 July.
-        </p>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-[2fr_1fr]">
-          <div>
-            <label
-              htmlFor="network-search"
-              className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-            >
-              Search
-            </label>
-            <input
-              id="network-search"
-              type="search"
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search country, port, company, contact"
-              className="mt-2 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground outline-none transition-colors placeholder:text-muted-foreground focus:border-ring"
-            />
-          </div>
-          <div>
-            <label
-              htmlFor="network-country"
-              className="text-xs font-semibold uppercase tracking-wide text-muted-foreground"
-            >
-              Country
-            </label>
-            <select
-              id="network-country"
-              value={country}
-              onChange={(event) => setCountry(event.target.value)}
-              className="mt-2 w-full rounded-xl border border-input bg-card px-4 py-3 text-sm text-foreground outline-none transition-colors focus:border-ring"
-            >
-              <option>All countries</option>
-              {agencyCountries.map((item) => (
-                <option key={item}>{item}</option>
-              ))}
-            </select>
-          </div>
-        </div>
 
         <div className="mt-8 overflow-x-auto rounded-2xl border border-border shadow-soft">
           <table className="w-full border-collapse text-left">
@@ -180,26 +120,15 @@ function NetworkPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (
-                <tr className="bg-card">
-                  <td
-                    colSpan={HEADERS.length}
-                    className="px-4 py-10 text-center text-sm text-muted-foreground"
-                  >
-                    No offices match this filter.
-                  </td>
-                </tr>
-              ) : (
-                filtered.map((office) => (
-                  <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
-                ))
-              )}
+              {agencyNetwork.map((office: AgencyOffice) => (
+                <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
+              ))}
             </tbody>
           </table>
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Showing {filtered.length} office locations across {countryCount} countries.{" "}
+          Showing {agencyNetwork.length} office locations across {countryCount} countries.{" "}
           <Link to="/" className="text-primary hover:underline">
             Return to single-scroll homepage.
           </Link>
