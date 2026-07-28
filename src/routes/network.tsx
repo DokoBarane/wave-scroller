@@ -233,7 +233,7 @@ function NetworkPage() {
               </tr>
             </thead>
             <tbody>
-              {filteredOffices.map((office: AgencyOffice) => (
+              {pagedOffices.map((office: AgencyOffice) => (
                 <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
               ))}
             </tbody>
