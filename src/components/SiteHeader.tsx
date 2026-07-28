@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import markAsset from "@/assets/vyom-mark-v3.png.asset.json";
+
 
 const NAV_ITEMS = [
   { label: "Services", hash: "services" },
@@ -50,18 +52,20 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
       >
         <Link
           to="/"
-          className="flex shrink-0 items-center"
+          className="flex shrink-0 items-center gap-2"
           aria-label="Vyom Global Logistics home"
         >
-          <span
-            className={cn(
-              "text-xl font-bold tracking-tight transition-colors duration-300 sm:text-2xl",
-              isDark ? "text-white" : "text-brand-dark",
-            )}
-          >
-            VYOM
+          <img
+            src={markAsset.url}
+            alt="Vyom"
+            className="h-8 w-auto sm:h-9"
+            loading="eager"
+          />
+          <span className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+            vyom
           </span>
         </Link>
+
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
           {NAV_ITEMS.map((item) => (
