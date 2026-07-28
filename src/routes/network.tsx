@@ -1,13 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import {
-  agencyCountries,
-  agencyNetwork,
-  officeSearchText,
-  type AgencyOffice,
-} from "@/data/agencyNetwork";
+import { agencyNetwork, type AgencyOffice } from "@/data/agencyNetwork";
 
 export const Route = createFileRoute("/network")({
   head: () => ({
