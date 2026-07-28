@@ -226,12 +226,75 @@ function NetworkPage() {
           </table>
         </div>
 
-        <p className="mt-6 text-sm text-muted-foreground">
-          Showing {filteredOffices.length} office {filteredOffices.length === 1 ? "location" : "locations"} across {countryCount} {countryCount === 1 ? "country" : "countries"}.{" "}
+        <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-center gap-2">
+            <label htmlFor="page-size" className="text-xs font-medium text-muted-foreground">
+              Rows per page
+            </label>
+            <Select value={String(pageSize)} onValueChange={(value) => { setPageSize(Number(value)); setPage(1); }}>
+              <SelectTrigger id="page-size" className="h-9 w-[5.5rem] text-sm">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                {[10, 20, 50].map((size) => (
+                  <SelectItem key={size} value={String(size)}>
+                    {size}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            {total === 0
+              ? "No offices match the selected filters."
+              : `Showing ${startIndex + 1}–${Math.min(startIndex + pageSize, total)} of ${total} office ${total === 1 ? "location" : "locations"} across ${countryCount} ${countryCount === 1 ? "country" : "countries"}.`}
+          </p>
+
+          <div className="flex items-center gap-1">
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9"
+              onClick={() => setPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage <= 1}
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Prev
+            </Button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <Button
+                key={p}
+                type="button"
+                variant={p === currentPage ? "default" : "outline"}
+                size="sm"
+                className="h-9 w-9 p-0"
+                onClick={() => setPage(p)}
+              >
+                {p}
+              </Button>
+            ))}
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              className="h-9"
+              onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage >= totalPages}
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
+
+        <p className="mt-4 text-sm text-muted-foreground">
           <Link to="/" className="text-primary hover:underline">
             Return to single-scroll homepage.
           </Link>
         </p>
+
       </main>
       <SiteFooter />
     </div>
