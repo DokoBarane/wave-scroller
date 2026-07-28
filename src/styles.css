@@ -187,6 +187,12 @@
   border-bottom: 1px solid color-mix(in oklab, white 12%, transparent);
 }
 
+@utility navbar-pill {
+  background-image: var(--gradient-brand-diagonal);
+  box-shadow: var(--shadow-elevated);
+  border: 1px solid color-mix(in oklab, white 15%, transparent);
+}
+
 @utility shadow-elevated {
   box-shadow: var(--shadow-elevated);
 }
