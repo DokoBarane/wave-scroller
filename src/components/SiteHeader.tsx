@@ -97,7 +97,7 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
               href="mailto:marina@vyomshipping.com"
               className="hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-blue shadow-soft transition-transform hover:scale-[1.03] sm:inline-flex"
             >
-              Start a Chat
+              Contact us
             </a>
           ) : (
             <Link
@@ -177,7 +177,7 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
                 href="mailto:marina@vyomshipping.com"
                 className="mt-2 rounded-full bg-white px-4 py-2.5 text-center text-sm font-semibold text-brand-blue"
               >
-                Start a Chat
+                Contact us
               </a>
             ) : (
               <Link
