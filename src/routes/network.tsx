@@ -156,7 +156,40 @@ function NetworkPage() {
           Agency Network Directory
         </h1>
 
+        <Tabs defaultValue="agency" className="mt-6">
+          <TabsList className="h-auto flex-wrap gap-1 rounded-xl bg-muted p-1">
+            <TabsTrigger value="agency" className="rounded-lg px-4 py-2 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-soft">
+              Agency
+            </TabsTrigger>
+            <TabsTrigger value="local-charges" className="rounded-lg px-4 py-2 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-soft">
+              Local Charges
+            </TabsTrigger>
+            <TabsTrigger value="downloads" className="rounded-lg px-4 py-2 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-soft">
+              Downloads
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="local-charges" className="mt-8">
+            <div className="rounded-2xl border border-border bg-card px-6 py-16 text-center shadow-soft">
+              <h2 className="text-xl font-semibold text-foreground">Local Charges</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Coming soon — port and terminal charge schedules will be published here.
+              </p>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="downloads" className="mt-8">
+            <div className="rounded-2xl border border-border bg-card px-6 py-16 text-center shadow-soft">
+              <h2 className="text-xl font-semibold text-foreground">Downloads</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Coming soon — forms, tariffs and documentation will be available here.
+              </p>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="agency" className="mt-0">
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end">
+
           <div className="w-full sm:w-56">
             <label htmlFor="country-filter" className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Country
