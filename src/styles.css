@@ -188,9 +188,13 @@
 }
 
 @utility navbar-pill {
-  background-image: var(--gradient-brand-diagonal);
-  box-shadow: var(--shadow-elevated);
-  border: 1px solid color-mix(in oklab, white 15%, transparent);
+  background-color: color-mix(in oklab, var(--brand-dark) 40%, transparent);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow:
+    0 8px 32px color-mix(in oklab, var(--brand-dark) 28%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 22%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 14%, transparent);
+  border: 1px solid color-mix(in oklab, white 18%, transparent);
 }
 
 @utility shadow-elevated {
