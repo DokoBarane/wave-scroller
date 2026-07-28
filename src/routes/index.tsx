@@ -1,8 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/Hero";
-import { Section } from "@/components/Section";
+import { Section, SectionMedia } from "@/components/Section";
+import { ParallaxBand } from "@/components/ParallaxBand";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg.asset.json";
+import tankStackAsset from "@/assets/vyom-tank-stack.jpg.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
