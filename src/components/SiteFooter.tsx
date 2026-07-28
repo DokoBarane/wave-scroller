@@ -12,6 +12,9 @@ export function SiteFooter() {
             <p className="text-xs text-muted-foreground">
               #02-05, Southpoint 200 Cantonment Road Singapore 089763
             </p>
+            <p className="text-xs text-muted-foreground">
+              © {new Date().getFullYear()} Vyom Global Logistics. All rights reserved.
+            </p>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
