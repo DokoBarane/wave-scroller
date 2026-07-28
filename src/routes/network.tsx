@@ -163,6 +163,7 @@ function NetworkPage() {
             </label>
             <Select value={selectedCountry} onValueChange={(value) => {
               setSelectedCountry(value);
+              setPage(1);
               if (value !== "all" && selectedLocation !== "all") {
                 const stillValid = agencyNetwork.some(
                   (o) => o.country === value && o.location === selectedLocation,
@@ -170,6 +171,7 @@ function NetworkPage() {
                 if (!stillValid) setSelectedLocation("all");
               }
             }}>
+
               <SelectTrigger id="country-filter" className="h-10 text-sm">
                 <SelectValue placeholder="All countries" />
               </SelectTrigger>
