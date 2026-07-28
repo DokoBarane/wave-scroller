@@ -96,15 +96,15 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
         <div className="flex items-center gap-2">
           {variant === "home" ? (
             <a
-              href="mailto:marina@vyomshipping.com"
-              className="hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-blue shadow-soft transition-transform hover:scale-[1.03] sm:inline-flex"
+              href="#contact"
+              className="hidden rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03] sm:inline-flex"
             >
               Contact us
             </a>
           ) : (
             <Link
               to="/"
-              className="hidden rounded-full bg-white px-4 py-2 text-sm font-semibold text-brand-blue shadow-soft transition-transform hover:scale-[1.03] sm:inline-flex"
+              className="hidden rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03] sm:inline-flex"
             >
               Go Home
             </Link>
