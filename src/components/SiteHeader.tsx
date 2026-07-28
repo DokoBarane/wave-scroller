@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import wordmark from "@/assets/vyom-wordmark-v2.png.asset.json";
+import logo from "@/assets/vyom-mark-v2.png.asset.json";
 
 const NAV_ITEMS = [
   { label: "Services", hash: "services" },
