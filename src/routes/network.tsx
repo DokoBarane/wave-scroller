@@ -343,8 +343,11 @@ function NetworkPage() {
             Return to single-scroll homepage.
           </Link>
         </p>
+          </TabsContent>
+        </Tabs>
 
       </main>
+
       <SiteFooter />
     </div>
   );
