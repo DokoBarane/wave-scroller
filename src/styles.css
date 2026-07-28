@@ -197,6 +197,16 @@
   border: 1px solid color-mix(in oklab, white 18%, transparent);
 }
 
+@utility navbar-pill-light {
+  background-color: color-mix(in oklab, white 78%, transparent);
+  backdrop-filter: blur(22px) saturate(160%);
+  box-shadow:
+    0 8px 32px color-mix(in oklab, var(--brand-dark) 12%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 60%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 8%, transparent);
+  border: 1px solid color-mix(in oklab, var(--brand-dark) 12%, transparent);
+}
+
 @utility shadow-elevated {
   box-shadow: var(--shadow-elevated);
 }

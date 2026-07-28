@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import wordmark from "@/assets/vyom-wordmark-v2.png.asset.json";
+import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { label: "Services", hash: "services" },
@@ -11,26 +11,56 @@ const NAV_ITEMS = [
 
 export function SiteHeader({ variant }: { variant: "home" | "network" }) {
   const [open, setOpen] = useState(false);
+  const [isDark, setIsDark] = useState(variant === "home");
 
   useEffect(() => {
     setOpen(false);
   }, [variant]);
 
-  const sectionHref = (hash: string) => (variant === "home" ? `#${hash}` : `/#${hash}`);
+  useEffect(() => {
+    if (variant !== "home") {
+      setIsDark(false);
+      return;
+    }
+
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsDark(entry.isIntersecting);
+      },
+      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [variant]);
+
+  const sectionHref = (hash: string) =>
+    variant === "home" ? `#${hash}` : `/#${hash}`;
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-3 sm:px-6 lg:px-8">
-      <div className="navbar-pill mx-auto flex max-w-5xl items-center justify-between gap-3 rounded-full px-3 py-2 sm:gap-4 sm:px-4">
+      <div
+        className={cn(
+          "mx-auto flex max-w-5xl items-center justify-between gap-3 rounded-full px-3 py-2 sm:gap-4 sm:px-4",
+          isDark ? "navbar-pill" : "navbar-pill-light",
+        )}
+      >
         <Link
           to="/"
           className="flex shrink-0 items-center"
           aria-label="Vyom Global Logistics home"
         >
-          <img
-            src={wordmark.url}
-            alt="Vyom Global Logistics"
-            className="h-6 w-auto sm:h-7"
-          />
+          <span
+            className={cn(
+              "text-xl font-bold tracking-tight transition-colors duration-300 sm:text-2xl",
+              isDark ? "text-white" : "text-brand-dark",
+            )}
+          >
+            VYOM
+          </span>
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Main">
@@ -38,14 +68,24 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             <a
               key={item.hash}
               href={sectionHref(item.hash)}
-              className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+              className={cn(
+                "text-sm font-medium transition-colors hover:opacity-100",
+                isDark
+                  ? "text-white/80 hover:text-white"
+                  : "text-brand-dark/80 hover:text-brand-dark",
+              )}
             >
               {item.label}
             </a>
           ))}
           <Link
             to="/network"
-            className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+            className={cn(
+              "text-sm font-medium transition-colors hover:opacity-100",
+              isDark
+                ? "text-white/80 hover:text-white"
+                : "text-brand-dark/80 hover:text-brand-dark",
+            )}
           >
             Network
           </Link>
@@ -72,10 +112,21 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             onClick={() => setOpen((value) => !value)}
             aria-expanded={open}
             aria-label="Toggle navigation"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25 lg:hidden"
+            className={cn(
+              "inline-flex h-9 w-9 items-center justify-center rounded-full transition-colors lg:hidden",
+              isDark
+                ? "bg-white/15 text-white hover:bg-white/25"
+                : "bg-brand-dark/10 text-brand-dark hover:bg-brand-dark/15",
+            )}
           >
             <span className="sr-only">Menu</span>
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
+            <svg
+              viewBox="0 0 24 24"
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+            >
               {open ? (
                 <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
               ) : (
@@ -87,14 +138,24 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
       </div>
 
       {open && (
-        <div className="navbar-pill mx-auto mt-2 max-w-5xl rounded-2xl px-4 py-4 lg:hidden">
+        <div
+          className={cn(
+            "mx-auto mt-2 max-w-5xl rounded-2xl px-4 py-4 lg:hidden",
+            isDark ? "navbar-pill" : "navbar-pill-light",
+          )}
+        >
           <nav className="flex flex-col gap-1" aria-label="Mobile">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.hash}
                 href={sectionHref(item.hash)}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-2 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10"
+                className={cn(
+                  "rounded-lg px-2 py-2.5 text-sm font-medium transition-colors",
+                  isDark
+                    ? "text-white/90 hover:bg-white/10"
+                    : "text-brand-dark/90 hover:bg-brand-dark/10",
+                )}
               >
                 {item.label}
               </a>
@@ -102,7 +163,12 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             <Link
               to="/network"
               onClick={() => setOpen(false)}
-              className="rounded-lg px-2 py-2.5 text-sm font-medium text-white/90 transition-colors hover:bg-white/10"
+              className={cn(
+                "rounded-lg px-2 py-2.5 text-sm font-medium transition-colors",
+                isDark
+                  ? "text-white/90 hover:bg-white/10"
+                  : "text-brand-dark/90 hover:bg-brand-dark/10",
+              )}
             >
               Network
             </Link>
