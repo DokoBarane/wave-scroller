@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg.asset.json";
 import tankStackAsset from "@/assets/vyom-tank-stack.jpg.asset.json";
+import terminalOfficeAsset from "@/assets/vyom-terminal-office.jpg.asset.json";
 
 
 export const Route = createFileRoute("/")({
@@ -92,8 +93,14 @@ function HomePage() {
           label="Resources"
           title="Operational resources in one place"
           tone="muted"
+          media={
+            <SectionMedia
+              src={terminalOfficeAsset.url}
+              alt="Vyom Global Logistics terminal office framed by stacked tanktainers"
+            />
+          }
         >
-          <PointList items={RESOURCES} />
+          <PointList items={RESOURCES} columns={1} />
         </Section>
 
         <Section
