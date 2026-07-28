@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/Hero";
 import { Section, SectionMedia } from "@/components/Section";
-import { ParallaxBand } from "@/components/ParallaxBand";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg.asset.json";
@@ -123,12 +122,6 @@ function HomePage() {
             agency offices across key trade corridors.
           </p>
         </Section>
-
-        <ParallaxBand
-          src={cargoShipAsset.url}
-          alt="Container ship carrying tanktainers across open ocean"
-        />
-
 
         <Section
           id="contact"
