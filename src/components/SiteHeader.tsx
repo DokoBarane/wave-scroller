@@ -9,7 +9,6 @@ const NAV_ITEMS = [
   { label: "Services", hash: "services" },
   { label: "Resources", hash: "resources" },
   { label: "About Us", hash: "about" },
-  { label: "Contact Us", hash: "contact" },
 ];
 
 export function SiteHeader({ variant }: { variant: "home" | "network" }) {
