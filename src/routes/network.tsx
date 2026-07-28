@@ -91,19 +91,7 @@ function OfficeRows({ office }: { office: AgencyOffice }) {
 }
 
 function NetworkPage() {
-  const [query, setQuery] = useState("");
-  const [country, setCountry] = useState("All countries");
-
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    return agencyNetwork.filter((office) => {
-      const matchesCountry = country === "All countries" || office.country === country;
-      const matchesQuery = needle.length === 0 || officeSearchText(office).includes(needle);
-      return matchesCountry && matchesQuery;
-    });
-  }, [query, country]);
-
-  const countryCount = new Set(filtered.map((office) => office.country)).size;
+  const countryCount = new Set(agencyNetwork.map((office: AgencyOffice) => office.country)).size;
 
   return (
     <div className="min-h-screen bg-background">
@@ -132,26 +120,15 @@ function NetworkPage() {
               </tr>
             </thead>
             <tbody>
-              {filtered.length === 0 ? (
-                <tr className="bg-card">
-                  <td
-                    colSpan={HEADERS.length}
-                    className="px-4 py-10 text-center text-sm text-muted-foreground"
-                  >
-                    No offices match this filter.
-                  </td>
-                </tr>
-              ) : (
-                filtered.map((office) => (
-                  <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
-                ))
-              )}
+              {agencyNetwork.map((office: AgencyOffice) => (
+                <OfficeRows key={`${office.country}-${office.location}-${office.company}`} office={office} />
+              ))}
             </tbody>
           </table>
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Showing {filtered.length} office locations across {countryCount} countries.{" "}
+          Showing {agencyNetwork.length} office locations across {countryCount} countries.{" "}
           <Link to="/" className="text-primary hover:underline">
             Return to single-scroll homepage.
           </Link>
