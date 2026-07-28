@@ -61,7 +61,7 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             className="h-8 w-auto sm:h-9"
             loading="eager"
           />
-          <span className="text-xl font-bold tracking-tight text-white sm:text-2xl">
+          <span className="font-sans text-2xl font-medium lowercase leading-none tracking-[-0.02em] text-white sm:text-[1.75rem]">
             vyom
           </span>
         </Link>
