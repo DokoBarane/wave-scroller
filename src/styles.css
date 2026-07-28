@@ -207,16 +207,6 @@
   border: 1px solid color-mix(in oklab, var(--brand-dark) 12%, transparent);
 }
 
-@utility glass-panel {
-  background-color: color-mix(in oklab, var(--brand-dark) 70%, transparent);
-  backdrop-filter: blur(24px) saturate(170%);
-  box-shadow:
-    0 24px 60px color-mix(in oklab, var(--brand-dark) 38%, transparent),
-    inset 0 1px 0 color-mix(in oklab, white 24%, transparent),
-    inset 0 -1px 0 color-mix(in oklab, black 16%, transparent);
-  border: 1px solid color-mix(in oklab, white 16%, transparent);
-}
-
 @utility shadow-elevated {
   box-shadow: var(--shadow-elevated);
 }
@@ -255,29 +245,5 @@
   [data-scroll-scale] {
     transform: none !important;
     opacity: 1 !important;
-  }
-}
-
-/* Hero chip entrance */
-@keyframes chip-in {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.chip-in {
-  opacity: 0;
-  animation: chip-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .chip-in {
-    opacity: 1;
-    animation: none;
   }
 }

@@ -1,15 +1,6 @@
 import { useSectionScrollProgress } from "@/hooks/use-scroll-motion";
 import heroImage from "@/assets/vyom-hero.jpg.asset.json";
 
-const COUNTRIES = [
-  "Singapore",
-  "Malaysia",
-  "Indonesia",
-  "Thailand",
-  "India",
-  "UAE",
-];
-
 export function Hero() {
   const { ref, progress } = useSectionScrollProgress<HTMLElement>();
   const scale = 1 - progress * 0.08;
@@ -72,39 +63,16 @@ export function Hero() {
             </div>
           </div>
 
-          <aside className="glass-panel relative isolate overflow-hidden rounded-3xl p-7">
-            <span
-              aria-hidden="true"
-              className="gradient-brand absolute inset-x-0 top-0 h-[3px]"
-            />
-            <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground/70">
-              <span
-                aria-hidden="true"
-                className="gradient-brand h-2 w-2 rounded-full"
-              />
+          <aside className="rounded-2xl border border-primary-foreground/15 bg-brand-dark/45 p-6 backdrop-blur-md">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary-foreground/60">
               Own offices
             </p>
-            <p className="mt-4 flex items-baseline gap-3">
-              <span className="text-5xl font-semibold leading-none tracking-tight text-primary-foreground sm:text-6xl">
-                6
-              </span>
-              <span className="text-base font-medium leading-snug text-primary-foreground/85">
-                countries
-                <br />
-                and growing
-              </span>
+            <p className="mt-3 text-xl font-semibold text-primary-foreground">
+              6 countries and growing
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {COUNTRIES.map((country, index) => (
-                <li
-                  key={country}
-                  className="chip-in rounded-full border border-primary-foreground/20 bg-primary-foreground/10 px-3 py-1.5 text-xs font-medium text-primary-foreground/90 transition-colors hover:border-primary-foreground/40 hover:bg-primary-foreground/20"
-                  style={{ animationDelay: `${150 + index * 70}ms` }}
-                >
-                  {country}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-3 text-sm leading-relaxed text-primary-foreground/70">
+              Singapore, Malaysia, Indonesia, Thailand, India, UAE
+            </p>
           </aside>
         </div>
       </div>

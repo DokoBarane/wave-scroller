@@ -1,28 +1,19 @@
-## Goal
+## Problem
 
-The hero side card ("Own offices / 6 countries and growing") is low-contrast against the busy photo and visually flat. Redesign it into a legible, premium glass stat panel.
+The new wordmark image has dark grey "vyom" lettering. Over the hero, the navbar uses the dark liquid-glass style, so the lettering disappears. It only reads correctly on the light navbar variant used further down the page and on /network.
 
-## What to build
+## Fix
 
-Replace the current `<aside>` in `src/components/Hero.tsx` with a stronger card:
+Produce a second version of the wordmark with white "vyom" lettering (butterfly mark keeps its blue-to-orange gradient), created by editing the uploaded image so both versions are pixel-identical apart from the text colour.
 
-1. **Legibility**
-   - Deeper glass fill (brand-dark ~70% instead of 45%), heavier blur and saturation, plus a soft inner top highlight and elevated outer shadow — same liquid-glass language as the navbar.
-   - Thin gradient (blue -> orange) accent line along the top edge of the card so it reads as a brand element, not a grey box.
-   - Text moves to full-strength foreground for the headline, with the muted tone reserved for the small label only.
+In `src/components/SiteHeader.tsx`, the header already tracks an `isDark` flag driven by an IntersectionObserver on the hero. Use it to pick the image source:
 
-2. **Hierarchy**
-   - Eyebrow label: "Own offices" in small uppercase tracked type with a small gradient dot.
-   - Hero stat: large numeral **6** paired with "countries and growing" as supporting text, so the number carries the visual weight instead of a single sentence.
+- `isDark` (over the hero, dark glass pill) -> white-lettering wordmark
+- otherwise (light glass pill, /network) -> the current dark-lettering wordmark
 
-3. **Countries as chips**
-   - Singapore, Malaysia, Indonesia, Thailand, India, UAE rendered as individual rounded pill chips (translucent border + subtle fill) in a wrap grid, rather than one comma-separated line. Each chip gets a light hover lift.
-
-4. **Motion**
-   - Chips fade/slide in with a small staggered delay on first view, respecting the existing reduced-motion setup in global CSS. No new libraries.
+Everything else — size, alt text, link behaviour, mobile menu — stays as is.
 
 ## Technical notes
 
-- Change stays inside `src/components/Hero.tsx`; the country list becomes a local array mapped to chips.
-- If any new glass treatment is reused, add it as a `@utility` in `src/styles.css` using existing brand tokens — no hardcoded colors.
-- Card keeps its current grid slot and stays responsive (full width under `lg`).
+- New asset registered as `src/assets/vyom-wordmark-v4-light.png.asset.json` via the asset CLI, generated with the image edit tool from the uploaded file.
+- Single `<img>` with a conditional `src`; both images preloaded implicitly by React swapping the source, so no layout shift (same `h-8 sm:h-9 w-auto`).
