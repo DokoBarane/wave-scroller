@@ -339,13 +339,8 @@ function NetworkPage() {
           </div>
         </div>
 
-        <p className="mt-4 text-sm text-muted-foreground">
-          <Link to="/" className="text-primary hover:underline">
-            Return to single-scroll homepage.
-          </Link>
-        </p>
-          </TabsContent>
-        </Tabs>
+        </TabsContent>
+      </Tabs>
 
       </main>
 
