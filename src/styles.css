@@ -207,6 +207,16 @@
   border: 1px solid color-mix(in oklab, var(--brand-dark) 12%, transparent);
 }
 
+@utility glass-panel {
+  background-color: color-mix(in oklab, var(--brand-dark) 70%, transparent);
+  backdrop-filter: blur(24px) saturate(170%);
+  box-shadow:
+    0 24px 60px color-mix(in oklab, var(--brand-dark) 38%, transparent),
+    inset 0 1px 0 color-mix(in oklab, white 24%, transparent),
+    inset 0 -1px 0 color-mix(in oklab, black 16%, transparent);
+  border: 1px solid color-mix(in oklab, white 16%, transparent);
+}
+
 @utility shadow-elevated {
   box-shadow: var(--shadow-elevated);
 }
