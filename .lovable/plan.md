@@ -1,19 +1,41 @@
+# Navbar Redesign Plan
+
 ## Goal
+Transform the current full-width dark glass header into a centered, floating pill-shaped navbar that matches the uploaded reference layout, using Vyom brand colors and the colored wordmark.
 
-Bring the two uploaded photos into the homepage: the aerial cargo ship and the stacked blue tanktainers. The third upload (website mockup) is treated as reference only.
+## Design Decisions (from your answers)
+- **Background:** Brand-colored pill (Vyom blue/orange gradient family) instead of the reference's dark pill.
+- **Logo:** Colored Vyom wordmark (`company_name-2.png`).
+- **Mobile menu:** Compact dropdown under the pill rather than a full-width slide-down.
 
-## What gets added
+## What Will Change
 
-1. **Services section** — two-column layout: existing service points on one side, the tanktainer stack photo on the other, in a rounded frame with a soft brand-blue edge glow. Stacks to a single column on mobile.
+### 1. `src/components/SiteHeader.tsx`
+- Wrap the header content in a centered, max-width pill container.
+- Apply a rounded-full shape with Vyom brand gradient background and subtle shadow.
+- Add top margin so the bar floats below the viewport edge (e.g., `mt-4`).
+- Layout inside the pill:
+  - Left: colored wordmark logo linking home.
+  - Center: horizontal nav links (Services, Resources, About Us, Contact Us, Network).
+  - Right: "Start a Chat" / "Go Home" CTA button.
+- Mobile:
+  - Keep the hamburger button on the right inside the pill.
+  - Replace the full-width slide-down with a compact rounded dropdown that appears directly beneath the pill.
+  - Stack nav links and CTA inside the dropdown.
 
-2. **About Us section** — same treatment, mirrored (photo on the opposite side) using the cargo ship photo, so the two sections don't read as identical.
+### 2. `src/styles.css`
+- Add a new `@utility` (e.g., `navbar-pill`) for the floating pill background, shadow, and border treatment so it stays reusable and theme-safe.
+- Adjust `scroll-padding-top` if the new floating bar changes the effective sticky offset.
 
-3. **Full-width parallax band before Contact Us** — an edge-to-edge cargo ship image band with a dark brand-tinted scrim and a short overlaid line drawn from existing copy ("Cross-border sea freight planning across Asia and beyond"). The image translates slowly as you scroll past, matching the existing hero's scroll behaviour and honouring reduced-motion.
+### 3. Visual Checks
+- Confirm the colored wordmark remains legible on the brand gradient pill.
+- Confirm nav links and CTA have enough contrast.
+- Verify the dropdown on mobile doesn't overflow or collide with hero content.
 
-## Technical notes
+## Out of Scope
+- No changes to page routes, section content, or scroll animations.
+- No changes to the Network page logic.
 
-- Both uploads are registered as CDN asset pointers (`src/assets/*.asset.json`) and imported by URL — no binaries added to the repo.
-- Section photos get a small fade/rise reveal on scroll, driven by the existing `useScrollReveal` hook, so no new motion system is introduced.
-- The parallax band uses `useSectionScrollProgress` (already built for the hero) and disables translation under `prefers-reduced-motion`.
-- `Section.tsx` gains an optional `media` slot and a `mediaSide` prop rather than duplicating layout code in each section.
-- Descriptive alt text on every image; hero background is untouched.
+## Verification
+- Run production build to catch any class or import issues.
+- Capture preview screenshots at desktop and mobile widths to confirm the pill shape, spacing, and dropdown behavior.
