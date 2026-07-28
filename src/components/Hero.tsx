@@ -10,7 +10,7 @@ export function Hero() {
     <section
       ref={ref}
       id="hero"
-      className="relative isolate flex min-h-[92vh] items-center overflow-hidden bg-brand-dark"
+      className="relative isolate flex min-h-[100vh] items-center overflow-hidden bg-brand-dark"
     >
       <div
         data-scroll-scale=""
