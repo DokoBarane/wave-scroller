@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+
 import mark from "@/assets/vyom-mark.png.asset.json";
 
 export function SiteFooter() {
