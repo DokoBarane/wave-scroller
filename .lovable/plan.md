@@ -1,41 +1,19 @@
-# Navbar Redesign Plan
+## Problem
 
-## Goal
-Transform the current full-width dark glass header into a centered, floating pill-shaped navbar that matches the uploaded reference layout, using Vyom brand colors and the colored wordmark.
+The new wordmark image has dark grey "vyom" lettering. Over the hero, the navbar uses the dark liquid-glass style, so the lettering disappears. It only reads correctly on the light navbar variant used further down the page and on /network.
 
-## Design Decisions (from your answers)
-- **Background:** Brand-colored pill (Vyom blue/orange gradient family) instead of the reference's dark pill.
-- **Logo:** Colored Vyom wordmark (`company_name-2.png`).
-- **Mobile menu:** Compact dropdown under the pill rather than a full-width slide-down.
+## Fix
 
-## What Will Change
+Produce a second version of the wordmark with white "vyom" lettering (butterfly mark keeps its blue-to-orange gradient), created by editing the uploaded image so both versions are pixel-identical apart from the text colour.
 
-### 1. `src/components/SiteHeader.tsx`
-- Wrap the header content in a centered, max-width pill container.
-- Apply a rounded-full shape with Vyom brand gradient background and subtle shadow.
-- Add top margin so the bar floats below the viewport edge (e.g., `mt-4`).
-- Layout inside the pill:
-  - Left: colored wordmark logo linking home.
-  - Center: horizontal nav links (Services, Resources, About Us, Contact Us, Network).
-  - Right: "Start a Chat" / "Go Home" CTA button.
-- Mobile:
-  - Keep the hamburger button on the right inside the pill.
-  - Replace the full-width slide-down with a compact rounded dropdown that appears directly beneath the pill.
-  - Stack nav links and CTA inside the dropdown.
+In `src/components/SiteHeader.tsx`, the header already tracks an `isDark` flag driven by an IntersectionObserver on the hero. Use it to pick the image source:
 
-### 2. `src/styles.css`
-- Add a new `@utility` (e.g., `navbar-pill`) for the floating pill background, shadow, and border treatment so it stays reusable and theme-safe.
-- Adjust `scroll-padding-top` if the new floating bar changes the effective sticky offset.
+- `isDark` (over the hero, dark glass pill) -> white-lettering wordmark
+- otherwise (light glass pill, /network) -> the current dark-lettering wordmark
 
-### 3. Visual Checks
-- Confirm the colored wordmark remains legible on the brand gradient pill.
-- Confirm nav links and CTA have enough contrast.
-- Verify the dropdown on mobile doesn't overflow or collide with hero content.
+Everything else — size, alt text, link behaviour, mobile menu — stays as is.
 
-## Out of Scope
-- No changes to page routes, section content, or scroll animations.
-- No changes to the Network page logic.
+## Technical notes
 
-## Verification
-- Run production build to catch any class or import issues.
-- Capture preview screenshots at desktop and mobile widths to confirm the pill shape, spacing, and dropdown behavior.
+- New asset registered as `src/assets/vyom-wordmark-v4-light.png.asset.json` via the asset CLI, generated with the image edit tool from the uploaded file.
+- Single `<img>` with a conditional `src`; both images preloaded implicitly by React swapping the source, so no layout shift (same `h-8 sm:h-9 w-auto`).
