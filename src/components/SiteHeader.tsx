@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import wordmarkAsset from "@/assets/vyom-wordmark-v4.png.asset.json";
+import wordmarkLightAsset from "@/assets/vyom-wordmark-v4-light.png.asset.json";
 
 
 const NAV_ITEMS = [
