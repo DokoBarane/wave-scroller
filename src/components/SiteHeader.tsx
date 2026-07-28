@@ -93,21 +93,12 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
         </nav>
 
         <div className="flex items-center gap-2">
-          {variant === "home" ? (
-            <a
-              href="#contact"
-              className="hidden rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03] sm:inline-flex"
-            >
-              Contact us
-            </a>
-          ) : (
-            <Link
-              to="/"
-              className="hidden rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03] sm:inline-flex"
-            >
-              Go Home
-            </Link>
-          )}
+          <a
+            href={variant === "home" ? "#contact" : "/#contact"}
+            className="hidden rounded-full gradient-brand px-6 py-2.5 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03] sm:inline-flex"
+          >
+            Contact us
+          </a>
           <button
             type="button"
             onClick={() => setOpen((value) => !value)}
@@ -173,22 +164,13 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             >
               Network
             </Link>
-            {variant === "home" ? (
-              <a
-                href="#contact"
-                onClick={() => setOpen(false)}
-                className="mt-2 rounded-full gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-elevated"
-              >
-                Contact us
-              </a>
-            ) : (
-              <Link
-                to="/"
-                className="mt-2 rounded-full gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-elevated"
-              >
-                Go Home
-              </Link>
-            )}
+            <a
+              href={variant === "home" ? "#contact" : "/#contact"}
+              onClick={() => setOpen(false)}
+              className="mt-2 rounded-full gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-elevated"
+            >
+              Contact us
+            </a>
           </nav>
         </div>
       )}
