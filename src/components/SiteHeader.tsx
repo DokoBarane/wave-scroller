@@ -176,15 +176,16 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
             </Link>
             {variant === "home" ? (
               <a
-                href="mailto:marina@vyomshipping.com"
-                className="mt-2 rounded-full bg-white px-4 py-2.5 text-center text-sm font-semibold text-brand-blue"
+                href="#contact"
+                onClick={() => setOpen(false)}
+                className="mt-2 rounded-full gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-elevated"
               >
                 Contact us
               </a>
             ) : (
               <Link
                 to="/"
-                className="mt-2 rounded-full bg-white px-4 py-2.5 text-center text-sm font-semibold text-brand-blue"
+                className="mt-2 rounded-full gradient-brand px-4 py-2.5 text-center text-sm font-semibold text-primary-foreground shadow-elevated"
               >
                 Go Home
               </Link>
