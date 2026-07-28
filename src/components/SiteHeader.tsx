@@ -57,7 +57,7 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
           aria-label="Vyom Global Logistics home"
         >
           <img
-            src={wordmarkAsset.url}
+            src={isDark ? wordmarkLightAsset.url : wordmarkAsset.url}
             alt="Vyom"
             className="h-8 w-auto sm:h-9"
             loading="eager"
