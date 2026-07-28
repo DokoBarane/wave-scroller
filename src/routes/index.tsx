@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ContactForm } from "@/components/ContactForm";
 import { Hero } from "@/components/Hero";
 import { Section, SectionMedia } from "@/components/Section";
 import { SiteHeader } from "@/components/SiteHeader";
