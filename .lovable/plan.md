@@ -1,28 +1,15 @@
-## Plan
+Add two dropdown filters directly under the "Agency Network Directory" heading on `/network`:
 
-Update the Agency Network Directory table on `/network` so the full dataset is readable without a horizontal scrollbar.
+1. **Country filter** — a `<Select>` dropdown populated with the unique countries from `agencyNetwork` data, plus an "All countries" option.
+2. **Location filter** — a `<Select>` dropdown populated with the unique locations from `agencyNetwork` data, plus an "All locations" option. Optionally narrow the location list to the selected country.
 
-### Changes to make
+Implementation details:
+- Use the existing `src/components/ui/select.tsx` component to match the site's shadcn style.
+- Add React state (`selectedCountry`, `selectedLocation`) in `src/routes/network.tsx`.
+- Filter the rendered `agencyNetwork` array before mapping it into table rows.
+- Update the "Showing X office locations across Y countries" summary to reflect the filtered count.
+- Lay out the two filters horizontally on desktop and stacked on mobile, with a "Clear filters" reset button.
+- Keep the current table width and font-size adjustments intact.
 
-1. **Widen the page container**
-   - Change the `<main>` container from `max-w-7xl` to `max-w-[90rem]` (or `max-w-8xl`) so the table has more room on large screens.
-
-2. **Reduce table cell font size**
-   - Lower body cell text from `text-sm` to `text-xs`.
-   - Lower header text from `text-xs` to `text-[11px]` (or keep `text-xs` but reduce padding).
-
-3. **Tighten horizontal padding**
-   - Reduce cell/header horizontal padding from `px-4` to `px-3` (or `px-2`) to reclaim width.
-
-4. **Allow more wrapping**
-   - Remove or reduce `min-w-[18rem]` on the company/address column.
-   - Let email and phone columns wrap (`whitespace-normal`) instead of forcing single-line cells.
-
-5. **Verify**
-   - Build the project and take a screenshot of `/network` at the current viewport width to confirm the table no longer scrolls horizontally and all columns are legible.
-
-### Files to edit
+Files changed:
 - `src/routes/network.tsx`
-
-### Outcome
-The directory table will use the full available viewport width and smaller type, fitting all columns in view without horizontal scrolling.
