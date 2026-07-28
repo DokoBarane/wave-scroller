@@ -49,10 +49,10 @@ export function Hero() {
             </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a
-                href="mailto:marina@vyomshipping.com"
+                href="#contact"
                 className="rounded-full gradient-brand px-6 py-3 text-sm font-semibold text-primary-foreground shadow-elevated transition-transform hover:scale-[1.03]"
               >
-                Start a Chat
+                Contact us
               </a>
               <a
                 href="#services"
