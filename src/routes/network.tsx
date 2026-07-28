@@ -190,7 +190,7 @@ function NetworkPage() {
             <label htmlFor="location-filter" className="mb-1.5 block text-xs font-medium text-muted-foreground">
               Location
             </label>
-            <Select value={selectedLocation} onValueChange={setSelectedLocation}>
+            <Select value={selectedLocation} onValueChange={(value) => { setSelectedLocation(value); setPage(1); }}>
               <SelectTrigger id="location-filter" className="h-10 text-sm">
                 <SelectValue placeholder="All locations" />
               </SelectTrigger>
