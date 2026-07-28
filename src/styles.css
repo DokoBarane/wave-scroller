@@ -257,3 +257,27 @@
     opacity: 1 !important;
   }
 }
+
+/* Hero chip entrance */
+@keyframes chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.chip-in {
+  opacity: 0;
+  animation: chip-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chip-in {
+    opacity: 1;
+    animation: none;
+  }
+}
