@@ -124,12 +124,26 @@ function NetworkPage() {
 
   const countryCount = new Set(filteredOffices.map((office) => office.country)).size;
 
+  const [pageSize, setPageSize] = useState<number>(10);
+  const [page, setPage] = useState<number>(1);
+
+  const total = filteredOffices.length;
+  const totalPages = Math.max(1, Math.ceil(total / pageSize));
+  const currentPage = Math.min(page, totalPages);
+  const startIndex = (currentPage - 1) * pageSize;
+  const pagedOffices = useMemo(
+    () => filteredOffices.slice(startIndex, startIndex + pageSize),
+    [filteredOffices, startIndex, pageSize],
+  );
+
   const clearFilters = () => {
     setSelectedCountry("all");
     setSelectedLocation("all");
+    setPage(1);
   };
 
   const hasActiveFilters = selectedCountry !== "all" || selectedLocation !== "all";
+
 
   return (
     <div className="min-h-screen bg-background">
