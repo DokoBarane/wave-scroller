@@ -38,7 +38,7 @@ const HEADERS = [
 
 function OfficeRows({ office }: { office: AgencyOffice }) {
   const rowCount = Math.max(office.contacts.length, 1);
-  const cellClass = "border-b border-border px-4 py-3 align-top text-sm";
+  const cellClass = "border-b border-border px-3 py-3 align-top text-xs";
 
   const officeCells = (
     <>
@@ -48,7 +48,7 @@ function OfficeRows({ office }: { office: AgencyOffice }) {
       <td rowSpan={rowCount} className={`${cellClass} text-foreground`}>
         {office.location}
       </td>
-      <td rowSpan={rowCount} className={`${cellClass} min-w-[18rem] text-muted-foreground`}>
+      <td rowSpan={rowCount} className={`${cellClass} min-w-[14rem] text-muted-foreground`}>
         <span className="block font-medium text-foreground">{office.company}</span>
         <span className="mt-1 block leading-relaxed">{office.address}</span>
       </td>
@@ -78,10 +78,10 @@ function OfficeRows({ office }: { office: AgencyOffice }) {
               {contact.email}
             </a>
           </td>
-          <td className={`${cellClass} whitespace-nowrap text-muted-foreground`}>
+          <td className={`${cellClass} text-muted-foreground`}>
             {contact.office ?? "—"}
           </td>
-          <td className={`${cellClass} whitespace-nowrap text-muted-foreground`}>
+          <td className={`${cellClass} text-muted-foreground`}>
             {contact.mobile ?? "—"}
           </td>
         </tr>
@@ -96,7 +96,7 @@ function NetworkPage() {
   return (
     <div className="min-h-screen bg-background">
       <SiteHeader variant="network" />
-      <main className="mx-auto max-w-7xl px-5 pb-20 pt-32 sm:px-8 sm:pt-40">
+      <main className="mx-auto max-w-[90rem] px-5 pb-20 pt-32 sm:px-8 sm:pt-40">
         <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gradient-brand">
           Network
         </p>
@@ -112,7 +112,7 @@ function NetworkPage() {
                   <th
                     key={header}
                     scope="col"
-                    className="whitespace-nowrap px-4 py-3 text-xs font-semibold uppercase tracking-wide text-primary-foreground"
+                    className="whitespace-nowrap px-3 py-3 text-[11px] font-semibold uppercase tracking-wide text-primary-foreground"
                   >
                     {header}
                   </th>
