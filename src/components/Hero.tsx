@@ -1,5 +1,5 @@
 import { useSectionScrollProgress } from "@/hooks/use-scroll-motion";
-import heroImage from "@/assets/vyom-hero.jpg.asset.json";
+import heroImage from "@/assets/vyom-hero.jpg";
 
 export function Hero() {
   const { ref, progress } = useSectionScrollProgress<HTMLElement>();
@@ -18,7 +18,7 @@ export function Hero() {
         style={{ transform: `scale(${1 + progress * 0.12})` }}
       >
         <img
-          src={heroImage.url}
+          src={heroImage}
           alt="Stacked Vyom tanktainer frames under a blue sky"
           className="h-full w-full object-cover"
           fetchPriority="high"

@@ -4,9 +4,9 @@ import { Hero } from "@/components/Hero";
 import { Section, SectionMedia } from "@/components/Section";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg.asset.json";
-import tankStackAsset from "@/assets/vyom-tank-stack.jpg.asset.json";
-import terminalOfficeAsset from "@/assets/vyom-terminal-office.jpg.asset.json";
+import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg";
+import tankStackAsset from "@/assets/vyom-tank-stack.jpg";
+import terminalOfficeAsset from "@/assets/vyom-terminal-office.jpg";
 
 
 export const Route = createFileRoute("/")({
@@ -80,7 +80,7 @@ function HomePage() {
           title="Built for demanding cargo flows"
           media={
             <SectionMedia
-              src={tankStackAsset.url}
+              src={tankStackAsset}
               alt="Blue-framed tank containers stacked several tiers high at a depot"
             />
           }
@@ -95,7 +95,7 @@ function HomePage() {
           tone="muted"
           media={
             <SectionMedia
-              src={terminalOfficeAsset.url}
+              src={terminalOfficeAsset}
               alt="Vyom Global Logistics terminal office framed by stacked tanktainers"
             />
           }
@@ -110,7 +110,7 @@ function HomePage() {
           mediaSide="left"
           media={
             <SectionMedia
-              src={cargoShipAsset.url}
+              src={cargoShipAsset}
               alt="Aerial view of a fully loaded container ship under way at sea"
             />
           }
