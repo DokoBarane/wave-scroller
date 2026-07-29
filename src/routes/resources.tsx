@@ -58,6 +58,144 @@ function ResourcePanel({
   );
 }
 
+const DEFINITIONS: { number: string; term: string; description: string }[] = [
+  {
+    number: "1.1",
+    term: "Carriage",
+    description:
+      "Carriage means the whole or any part of the carriage, loading, unloading, storing, warehousing, handling and any and all other services whatsoever undertaken by the Carrier in relation to the Goods.",
+  },
+  {
+    number: "1.2",
+    term: "Carrier",
+    description:
+      "A carrier is responsible for transporting the freight from one place to another. Vyom Global Logistics (S) Pte Ltd is a Carrier.",
+  },
+  {
+    number: "1.3",
+    term: "Container",
+    description:
+      "Includes any container (including an open top container), flat rack, platform, trailer, transportable tank, pallet, or any other similar article used to consolidate the Goods and any connected equipment.",
+  },
+  {
+    number: "1.4",
+    term: "Freight",
+    description:
+      "Includes all charges payable to the carrier in accordance with the applicable Tariff and the bill of lading.",
+  },
+  {
+    number: "1.5",
+    term: "Goods",
+    description:
+      "Means the whole or any part of the cargo and any packaging accepted from the Shipper and includes any Container not supplied by or on behalf of the Carrier.",
+  },
+  {
+    number: "1.6",
+    term: "Hague Rules",
+    description:
+      "Means the provisions of the International Convention for the Unification of Certain Rules relating to Bills of Lading signed at Brussels on 25th August 1924 and includes the amendments by the Protocol signed at Brussels on 23rd February 1968, but only if such amendments are compulsorily applicable to the bill of lading. (It is expressly provided that nothing in the bill of lading shall be construed as contractually applying the said Rules as amended by said Protocol).",
+  },
+  {
+    number: "1.7",
+    term: "Holder",
+    description:
+      "Means any Person for the time being in possession of the bill of lading to or in whose rights of suit and or liability under the bill of lading have been transferred or vested.",
+  },
+  {
+    number: "1.9",
+    term: "Merchant",
+    description:
+      "Includes the Shipper, Holder, Consignee, Receiver of the Goods, any Person owning or entitled to the possession of the Goods or of the bill of lading and anyone acting on behalf of such Person.",
+  },
+  {
+    number: "1.10",
+    term: "Multimodal Transport",
+    description:
+      "Arises if the Place of Receipt and/or the Place of Delivery are indicated on the reverse hereof in the relevant spaces.",
+  },
+  {
+    number: "1.11",
+    term: "Ocean Transport",
+    description: "Means the same as Port-to-Port Shipment.",
+  },
+  {
+    number: "1.12",
+    term: "Package",
+    description:
+      "Where a Container is loaded with more than one package or unit, the packages or other shipping units enumerated on the reverse hereof as packed in such Container and entered in the box on the reverse hereof entitled “Carrier’s”.",
+  },
+  {
+    number: "1.13",
+    term: "Receipt",
+    description: "Are each deemed a Package.",
+  },
+  {
+    number: "1.14",
+    term: "Person",
+    description: "Includes an individual, corporation, or other legal entity.",
+  },
+  {
+    number: "1.15",
+    term: "Port-to-Port Shipment",
+    description: "Arises when the Carriage is not Multimodal.",
+  },
+  {
+    number: "1.16",
+    term: "Subcontractor",
+    description:
+      "Includes owners, charterers, and operators of vessels (other than the Carrier), stevedores, terminal and groupage operators, road and rail transport operators, warehousemen and any independent contractors employed by the Carrier performing the Carriage and any direct or indirect Subcontractors, servants, and agents thereof whether in direct contractual privity or not.",
+  },
+  {
+    number: "1.17",
+    term: "Terms and Conditions",
+    description:
+      "Means all terms, rights, defenses, provisions, conditions, exceptions, limitations, and liberties hereof.",
+  },
+  {
+    number: "1.18",
+    term: "US COGSA™",
+    description:
+      "Means the US Carriage of Goods by Sea Act 1936. “Vessel” means any water borne craft used in the carriage under the Bill of Lading which may be a feeder vessel or an ocean vessel.",
+  },
+];
+
+function DefinitionsPanel() {
+  return (
+    <>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gradient-brand">
+        Resources
+      </p>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        Definitions
+      </h1>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        Terminology used across Vyom Global Logistics bills of lading and
+        service documentation.
+      </p>
+      <dl className="mt-8 grid gap-4 lg:grid-cols-2">
+        {DEFINITIONS.map((item) => (
+          <div
+            key={item.number}
+            className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+          >
+            <dt className="flex flex-wrap items-baseline gap-2">
+              <span className="text-xs font-semibold tracking-[0.12em] text-gradient-brand">
+                {item.number}
+              </span>
+              <span className="text-base font-semibold text-foreground">
+                {item.term}
+              </span>
+            </dt>
+            <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              {item.description}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </>
+  );
+}
+
 function ResourcesPage() {
   return (
     <div className="min-h-screen bg-background">
