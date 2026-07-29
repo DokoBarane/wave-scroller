@@ -196,6 +196,139 @@ function DefinitionsPanel() {
   );
 }
 
+const INCOTERMS_ANY_MODE = [
+  {
+    term: "Ex works",
+    description:
+      "The shipper’s goods are placed at the disposal of the buyer within the shipper’s premises or any other place. The shipper’s responsibility is minimum, and the buyer is responsible for loading and for all the other export-related formalities.",
+  },
+  {
+    term: "FCA",
+    description:
+      "Free Carrier – The shipper’s responsibility includes completing all export clearance formalities and making the goods available to the carrier.",
+  },
+  {
+    term: "DAP",
+    description:
+      "Delivered at Place – The shipper has to assume all the risks involved up to unloading of goods.",
+  },
+  {
+    term: "DDP",
+    description:
+      "Delivered Duty Paid – As the name of the term suggests the shipper is responsible for all the expenses and risks involved in making the goods available at the final destination. The duty and taxes have to be borne by the shipper.",
+  },
+  {
+    term: "DPU",
+    description:
+      "Delivered at Place Unloaded – Means that the shipper has to clear goods for export, where applicable, without any obligation to clear the goods for import, pay import duty or carry out import customs formalities.",
+  },
+  {
+    term: "CIP",
+    description:
+      "Carriage and Insurance Paid – Means that the shipper is responsible for arranging and paying the carriage charges and insurance. Carriage charges are paid up to the named place.",
+  },
+  {
+    term: "CPT",
+    description:
+      "Carriage Paid To – As the name suggests only the carriage charges are borne by the shipper and the shipper does not have to cover insurance.",
+  },
+];
+
+const INCOTERMS_OCEAN = [
+  {
+    term: "FAS",
+    description:
+      "Free Alongside Ship – Shipper has direct access to the vessel for loading. This is usually for bulk cargo vessels.",
+  },
+  {
+    term: "FCA",
+    description:
+      "Free Carrier – Shipper has to bear transportation costs and assume all risks until the carrier receives the goods, after which the buyer has to bear all responsibility.",
+  },
+  {
+    term: "FOB",
+    description:
+      "Free On Board – Shipper delivers the goods aboard the vessel nominated by the consignee. Shipper is responsible for all costs up to that point.",
+  },
+  {
+    term: "CFR",
+    description:
+      "Cost and Freight – Shipper is responsible for the cost, freight, and delivery of the goods to the port specified by the consignee.",
+  },
+  {
+    term: "CIF",
+    description:
+      "Cost, Insurance and Freight – Same as above except the shipper also has to bear the insurance as well.",
+  },
+];
+
+function IncotermsPanel() {
+  return (
+    <>
+      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gradient-brand">
+        Resources
+      </p>
+      <h1 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
+        Incoterms
+      </h1>
+      <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        The Incoterms® rules are published by the International Chamber of
+        Commerce and are incorporated in contracts for the sale of goods
+        worldwide. They provide rules and guidance to importers, exporters,
+        lawyers, transporters, insurers, and students of international trade.
+      </p>
+
+      <section className="mt-8">
+        <h2 className="text-lg font-semibold text-foreground">
+          Seven Incoterms® 2020 rules for any mode of transport
+        </h2>
+        <ol className="mt-4 grid gap-4 lg:grid-cols-2">
+          {INCOTERMS_ANY_MODE.map((item, index) => (
+            <li
+              key={item.term}
+              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+            >
+              <span className="text-xs font-semibold tracking-[0.12em] text-gradient-brand">
+                {index + 1}.
+              </span>
+              <h3 className="mt-1 text-base font-semibold text-foreground">
+                {item.term}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="mt-10">
+        <h2 className="text-lg font-semibold text-foreground">
+          Four Incoterms® 2020 rules for ocean transport
+        </h2>
+        <ol className="mt-4 grid gap-4 lg:grid-cols-2">
+          {INCOTERMS_OCEAN.map((item, index) => (
+            <li
+              key={item.term}
+              className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+            >
+              <span className="text-xs font-semibold tracking-[0.12em] text-gradient-brand">
+                {index + 1}.
+              </span>
+              <h3 className="mt-1 text-base font-semibold text-foreground">
+                {item.term}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {item.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </>
+  );
+}
+
 function ResourcesPage() {
   return (
     <div className="min-h-screen bg-background">
@@ -216,15 +349,10 @@ function ResourcesPage() {
 
           <TabsContent value="definitions" className="mt-8 w-full">
             <DefinitionsPanel />
-
           </TabsContent>
 
           <TabsContent value="incoterms" className="mt-8 w-full">
-            <ResourcePanel
-              label="Resources"
-              title="Incoterms"
-              description="Content coming shortly — Incoterms rules and the responsibilities they assign to buyer and seller will be published here."
-            />
+            <IncotermsPanel />
           </TabsContent>
 
           <TabsContent value="terms" className="mt-8 w-full">
