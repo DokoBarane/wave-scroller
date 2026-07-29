@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import wordmarkAsset from "@/assets/vyom-wordmark-v4.png.asset.json";
-import wordmarkLightAsset from "@/assets/vyom-wordmark-v4-light.png.asset.json";
+import wordmarkAsset from "@/assets/vyom-wordmark-v4.webp";
+import wordmarkLightAsset from "@/assets/vyom-wordmark-v4-light.png";
 
 
 const NAV_ITEMS = [
@@ -56,7 +56,7 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
           aria-label="Vyom Global Logistics home"
         >
           <img
-            src={isDark ? wordmarkLightAsset.url : wordmarkAsset.url}
+            src={isDark ? wordmarkLightAsset : wordmarkAsset}
             alt="Vyom"
             className="h-8 w-auto sm:h-9"
             loading="eager"
