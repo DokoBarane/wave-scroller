@@ -1,26 +1,26 @@
-## Interactive world map on the Network page
+## Goal
+Replace the current low-detail world map with a better-looking map that is zoomed into the Asia–Middle East corridor where all six agency points sit, plus a more refined marker animation.
 
-Add a stylised world map panel above the Agency / Local Charges / Downloads tabs on `/network`, with pulsing red markers for six locations.
+## What changes
 
-### Locations plotted
-| Marker | Coordinates |
-|---|---|
-| Chennai, India | 13.08 N, 80.27 E |
-| Singapore | 1.28 N, 103.85 E |
-| Port Klang, Selangor (Malaysia) | 3.00 N, 101.39 E |
-| Bangkok, Thailand | 13.75 N, 100.52 E |
-| Jakarta, Indonesia | -6.21 S, 106.85 E |
-| Jebel Ali, UAE | 25.01 N, 55.06 E |
+**1. Better basemap data**
+- Add `d3-geo` + `topojson-client` and a bundled Natural Earth 110m/50m land + country dataset (stored locally under `src/data/` so nothing loads from a CDN).
+- Build the SVG paths with a proper projection (Mercator or a geo-natural projection) fitted to a bounding box covering UAE → Indonesia (roughly lng 45–115, lat -12 → 32) instead of the hand-rolled equirectangular full-world path.
+- Country borders drawn as thin strokes over a soft brand-blue landmass fill, subtle sea background — no graticule grid clutter.
 
-### What it looks like
-- Full-width rounded panel above the tabs, matching the card/border/shadow-soft styling used elsewhere on the page.
-- World landmass drawn as a soft muted silhouette (subtle brand-tinted fill, faint grid/graticule) so red dots stand out.
-- Each marker: a red dot with a slow pulsing halo ring, plus a small connecting glow.
-- Hover/tap a marker → tooltip with location + country; the marker scales up. Clicking a marker filters the Agency table below to that country/location (reuses the existing Country + Location filter state).
-- Map crops to the Asia–Middle East region on mobile so points stay legible; full world on desktop.
+**2. Focused view, no full world**
+- Both desktop and mobile use the same fitted Asia–Middle East extent; mobile just gets slightly tighter padding and larger touch targets. `WORLD_LAND_PATH` / `worldLandPath.ts` gets removed.
 
-### Technical notes
-- No map library or API key. A lightweight inline SVG world map (equirectangular outline, `viewBox="0 0 1000 500"`) lives in a new `src/components/WorldMap.tsx`; lat/lng converted to x/y with the standard equirectangular formula.
-- Marker data in a new small array (label, country, location, lat, lng) so it stays editable; `location`/`country` values match `agencyNetwork` entries for the click-to-filter behaviour.
-- Colors via existing semantic tokens (brand orange/red for markers, muted/border for land) — no hardcoded hex in components.
-- Pulse animation added as a keyframe in `src/styles.css`.
+**3. Improved marker animation**
+- Replace the current static pulse ring with a staggered double sonar ripple (each marker offset so they don't pulse in unison), a solid core dot with a soft glow, and a gentle drop-in on mount.
+- Hover/active: dot scales up, ripple accelerates slightly, and the label appears in a small rounded pill (foreignObject-free, SVG rect + text) instead of raw stroked text.
+- Respect `prefers-reduced-motion` (ripples disabled, static dots).
+- Keep existing behaviour: click a marker → sets Country + Location filters on the directory below; `activeLocation` prop highlights the matching marker.
+
+**4. Optional connection arcs**
+- Thin dashed brand-blue great-circle arcs linking Singapore to the other five hubs, with a slow dash-flow animation, to make the panel feel like a network rather than scattered dots.
+
+## Technical notes
+- New dependencies: `d3-geo`, `topojson-client` (+ types). Geometry is precomputed at render with `geoPath`, so no runtime network calls.
+- Animations defined as keyframes in `src/styles.css` using existing brand tokens (`--brand-orange`, `--brand-blue`); no hardcoded colors.
+- `WorldMap.tsx` stays the single component; `NETWORK_MARKERS` export and props signature are unchanged so `/network` needs no edits.
