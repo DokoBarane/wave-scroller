@@ -7,9 +7,14 @@ import wordmarkLightAsset from "@/assets/vyom-wordmark-v4-light.png";
 
 const NAV_ITEMS = [
   { label: "Services", hash: "services" },
-  { label: "Resources", hash: "resources" },
   { label: "About Us", hash: "about" },
 ];
+
+const PAGE_LINKS = [
+  { label: "Resources", to: "/resources" as const },
+  { label: "Network", to: "/network" as const },
+];
+
 
 export function SiteHeader({ variant }: { variant: "home" | "network" }) {
   const [open, setOpen] = useState(false);
