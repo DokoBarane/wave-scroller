@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg";
 import tankStackAsset from "@/assets/vyom-tank-stack.jpg";
-import terminalOfficeAsset from "@/assets/vyom-terminal-office.jpg";
+
 
 
 export const Route = createFileRoute("/")({
