@@ -26,8 +26,8 @@ function project(lat: number, lng: number) {
 }
 
 /** Full world on desktop, Asia–Middle East crop on small screens. */
-const FULL_VIEW = `0 0 ${W} ${H}`;
-const ASIA_VIEW = "620 140 260 180";
+const FULL_VIEW = `0 25 ${W} ${H - 90}`;
+const ASIA_VIEW = "620 150 270 160";
 
 export function WorldMap({
   onSelect,
@@ -140,8 +140,8 @@ export function WorldMap({
         </p>
       </div>
       <div className="bg-background/60">
-        <div className="hidden h-[22rem] w-full sm:block">{renderMap(FULL_VIEW, 1)}</div>
-        <div className="h-[16rem] w-full sm:hidden">{renderMap(ASIA_VIEW, 0.35)}</div>
+        <div className="hidden h-[22rem] w-full sm:block">{renderMap(FULL_VIEW, 3.4)}</div>
+        <div className="h-[16rem] w-full sm:hidden">{renderMap(ASIA_VIEW, 1.1)}</div>
       </div>
     </div>
   );
