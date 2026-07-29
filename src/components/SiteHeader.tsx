@@ -6,8 +6,8 @@ import wordmarkLightAsset from "@/assets/vyom-wordmark-v4-light.png";
 
 
 const NAV_ITEMS = [
-  { label: "Services", hash: "services" },
   { label: "About Us", hash: "about" },
+  { label: "Services", hash: "services" },
 ];
 
 const PAGE_LINKS = [
