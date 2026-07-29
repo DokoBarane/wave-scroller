@@ -215,11 +215,8 @@ function ResourcesPage() {
           </TabsList>
 
           <TabsContent value="definitions" className="mt-8 w-full">
-            <ResourcePanel
-              label="Resources"
-              title="Definitions"
-              description="Content coming shortly — shipping and documentation terminology used across Vyom operations will be listed here."
-            />
+            <DefinitionsPanel />
+
           </TabsContent>
 
           <TabsContent value="incoterms" className="mt-8 w-full">
