@@ -161,18 +161,22 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
                 {item.label}
               </a>
             ))}
-            <Link
-              to="/network"
-              onClick={() => setOpen(false)}
-              className={cn(
-                "rounded-lg px-2 py-2.5 text-sm font-medium transition-colors",
-                isDark
-                  ? "text-white/90 hover:bg-white/10"
-                  : "text-brand-dark/90 hover:bg-brand-dark/10",
-              )}
-            >
-              Network
-            </Link>
+            {PAGE_LINKS.map((item) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "rounded-lg px-2 py-2.5 text-sm font-medium transition-colors",
+                  isDark
+                    ? "text-white/90 hover:bg-white/10"
+                    : "text-brand-dark/90 hover:bg-brand-dark/10",
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+
             <a
               href={variant === "home" ? "#contact" : "/#contact"}
               onClick={() => setOpen(false)}
