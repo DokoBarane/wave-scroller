@@ -439,7 +439,7 @@ const TERMS_CLAUSES: TermClause[] = [
       },
       {
         id: "7.3",
-        text: "The Merchant agrees and acknowledges that the Carrier has no knowledge of the value of the Goods and higher compensation than that provided for in this bill of lading may be claimed only when, with the consent of the Carrier, the value of the Goods declared by the Shipper upon delivery to the Carrier has been stated in the box marked "Declared Value" on the reverse of the bill of lading and extra freight paid. In that case, the amount of the declared value shall be substituted for the limits laid down in this bill of lading. Any partial loss or damage shall be adjusted pro rata on the basis of such declared value.",
+        text: "The Merchant agrees and acknowledges that the Carrier has no knowledge of the value of the Goods and higher compensation than that provided for in this bill of lading may be claimed only when, with the consent of the Carrier, the value of the Goods declared by the Shipper upon delivery to the Carrier has been stated in the box marked \"Declared Value\" on the reverse of the bill of lading and extra freight paid. In that case, the amount of the declared value shall be substituted for the limits laid down in this bill of lading. Any partial loss or damage shall be adjusted pro rata on the basis of such declared value.",
       },
       {
         id: "7.4",
@@ -528,7 +528,7 @@ const TERMS_CLAUSES: TermClause[] = [
       },
       {
         id: "12.3",
-        text: "The term "apparent good order and condition" when used in this bill of lading with reference to goods which require refrigeration, ventilation or other specialized attention does not mean that the Goods, when received were verified by the Carrier as being at the carrying temperature, humidity level or other condition designated by the Merchant.",
+        text: "The term \"apparent good order and condition\" when used in this bill of lading with reference to goods which require refrigeration, ventilation or other specialized attention does not mean that the Goods, when received were verified by the Carrier as being at the carrying temperature, humidity level or other condition designated by the Merchant.",
       },
       {
         id: "12.4",
@@ -549,7 +549,7 @@ const TERMS_CLAUSES: TermClause[] = [
     subClauses: [
       {
         id: "14.1",
-        text: "This bill of lading shall be prima facie evidence of the receipt by the Carrier in apparent good order and condition, except as otherwise noted, of the total number of Containers or other packages or units indicated in the box entitled "Carriers Receipt" on the reverse side hereof.",
+        text: "This bill of lading shall be prima facie evidence of the receipt by the Carrier in apparent good order and condition, except as otherwise noted, of the total number of Containers or other packages or units indicated in the box entitled \"Carriers Receipt\" on the reverse side hereof.",
       },
       {
         id: "14.2",
