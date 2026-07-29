@@ -294,10 +294,10 @@
   }
 }
 
-@keyframes map-pulse {
+@keyframes map-ripple {
   0% {
-    transform: scale(0.35);
-    opacity: 0.55;
+    transform: scale(0.2);
+    opacity: 0.6;
   }
   70% {
     transform: scale(1);
@@ -309,13 +309,53 @@
   }
 }
 
-.map-pulse {
-  animation: map-pulse 2.4s ease-out infinite;
+@keyframes map-drop-in {
+  0% {
+    transform: translateY(-8px) scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(0) scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes map-arc-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.map-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-ripple 3s cubic-bezier(0.16, 0.84, 0.44, 1) infinite;
+}
+
+.map-marker-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: map-drop-in 0.6s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.map-arc {
+  stroke-dasharray: 3 7;
+  animation: map-arc-flow 2.4s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .map-pulse {
+  .map-ripple {
     animation: none;
-    opacity: 0.25;
+    opacity: 0.2;
+  }
+
+  .map-marker-core,
+  .map-arc {
+    animation: none;
   }
 }
+
