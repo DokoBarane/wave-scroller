@@ -37,11 +37,6 @@ const SERVICES = [
   "Cross-border sea freight planning across Asia and beyond",
 ];
 
-const RESOURCES = [
-  "Customer zone for agency and port-level communication",
-  "Network lookup to identify country and city partners quickly",
-  "Terms, conditions, and operations documentation",
-];
 
 function PointList({
   items,
