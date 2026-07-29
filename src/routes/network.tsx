@@ -2,7 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { WorldMap } from "@/components/WorldMap";
 import { agencyNetwork, type AgencyOffice } from "@/data/agencyNetwork";
+
 import {
   Select,
   SelectContent,
