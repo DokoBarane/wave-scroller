@@ -84,17 +84,21 @@ export function SiteHeader({ variant }: { variant: "home" | "network" }) {
               {item.label}
             </a>
           ))}
-          <Link
-            to="/network"
-            className={cn(
-              "text-sm font-medium transition-colors hover:opacity-100",
-              isDark
-                ? "text-white/80 hover:text-white"
-                : "text-brand-dark/80 hover:text-brand-dark",
-            )}
-          >
-            Network
-          </Link>
+          {PAGE_LINKS.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              className={cn(
+                "text-sm font-medium transition-colors hover:opacity-100",
+                isDark
+                  ? "text-white/80 hover:text-white"
+                  : "text-brand-dark/80 hover:text-brand-dark",
+              )}
+            >
+              {item.label}
+            </Link>
+          ))}
+
         </nav>
 
         <div className="flex items-center gap-2">
