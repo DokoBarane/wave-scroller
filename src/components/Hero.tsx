@@ -44,9 +44,6 @@ export function Hero() {
               <br />
               in sea freight solutions.
             </h1>
-            <p className="mt-6 max-w-xl text-base text-primary-foreground/75 sm:text-lg">
-              Photos of the tanktainer fleet.
-            </p>
             <div className="mt-9 flex flex-wrap gap-3">
               <a
                 href="#contact"
