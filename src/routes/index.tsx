@@ -89,21 +89,7 @@ function HomePage() {
         </Section>
 
         <Section
-          id="resources"
-          label="Resources"
-          title="Operational resources in one place"
-          tone="muted"
-          media={
-            <SectionMedia
-              src={terminalOfficeAsset}
-              alt="Vyom Global Logistics terminal office framed by stacked tanktainers"
-            />
-          }
-        >
-          <PointList items={RESOURCES} columns={1} />
-        </Section>
 
-        <Section
           id="about"
           label="About Us"
           title="Experience-led logistics built to scale"
