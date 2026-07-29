@@ -218,7 +218,7 @@ export function WorldMap({
         <div className="hidden h-[24rem] w-full sm:block">
           <MapCanvas
             padding={28}
-            scale={1}
+            scale={1.25}
             onSelect={onSelect}
             activeLocation={activeLocation}
             hovered={hovered}
