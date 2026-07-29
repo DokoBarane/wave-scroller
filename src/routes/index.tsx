@@ -70,21 +70,6 @@ function HomePage() {
         <Hero />
 
         <Section
-          id="services"
-          label="Services"
-          title="Built for demanding cargo flows"
-          media={
-            <SectionMedia
-              src={tankStackAsset}
-              alt="Blue-framed tank containers stacked several tiers high at a depot"
-            />
-          }
-        >
-          <PointList items={SERVICES} columns={1} />
-        </Section>
-
-        <Section
-
           id="about"
           label="About Us"
           title="Experience-led logistics built to scale"
@@ -103,6 +88,20 @@ function HomePage() {
             how we coordinate tank container and dry cargo shipments through tightly connected
             agency offices across key trade corridors.
           </p>
+        </Section>
+
+        <Section
+          id="services"
+          label="Services"
+          title="Built for demanding cargo flows"
+          media={
+            <SectionMedia
+              src={tankStackAsset}
+              alt="Blue-framed tank containers stacked several tiers high at a depot"
+            />
+          }
+        >
+          <PointList items={SERVICES} columns={1} />
         </Section>
 
         <Section
