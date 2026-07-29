@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import cargoShipAsset from "@/assets/vyom-cargo-ship.jpg";
 import tankStackAsset from "@/assets/vyom-tank-stack.jpg";
-import terminalOfficeAsset from "@/assets/vyom-terminal-office.jpg";
+
 
 
 export const Route = createFileRoute("/")({
@@ -37,11 +37,6 @@ const SERVICES = [
   "Cross-border sea freight planning across Asia and beyond",
 ];
 
-const RESOURCES = [
-  "Customer zone for agency and port-level communication",
-  "Network lookup to identify country and city partners quickly",
-  "Terms, conditions, and operations documentation",
-];
 
 function PointList({
   items,
@@ -89,21 +84,7 @@ function HomePage() {
         </Section>
 
         <Section
-          id="resources"
-          label="Resources"
-          title="Operational resources in one place"
-          tone="muted"
-          media={
-            <SectionMedia
-              src={terminalOfficeAsset}
-              alt="Vyom Global Logistics terminal office framed by stacked tanktainers"
-            />
-          }
-        >
-          <PointList items={RESOURCES} columns={1} />
-        </Section>
 
-        <Section
           id="about"
           label="About Us"
           title="Experience-led logistics built to scale"
