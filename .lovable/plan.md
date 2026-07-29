@@ -1,23 +1,42 @@
+# Hero Redesign Plan
+
 ## Goal
-Add three tabs to the Network page: **Agency**, **Local Charges**, **Downloads**. Agency shows the existing directory (filters + paginated table); the other two show a "Coming soon" placeholder.
+Make the homepage hero section feel premium, readable, and engaging instead of flat/dull, while keeping the current tanktainer background image and Vyom brand colors.
 
-## Layout
-Tabs sit directly under the "Agency Network Directory" heading, above the Country/Location filters.
+## What will change
 
-```text
-Network
-Agency Network Directory
-[ Agency | Local Charges | Downloads ]
---------------------------------------
-(tab content)
-```
+### 1. Typography & hierarchy
+- Increase the headline size and weight so it dominates the viewport.
+- Split the headline into two visual lines with intentional line breaks.
+- Add a short, high-contrast sub-headline below the main headline.
 
-## Implementation
-- In `src/routes/network.tsx`, add the shadcn `Tabs` / `TabsList` / `TabsTrigger` / `TabsContent` components (already available in `src/components/ui/tabs.tsx`; added if missing), with `defaultValue="agency"`.
-- Move the existing filters block, table, pagination bar and "Return to homepage" link into `<TabsContent value="agency">` — no changes to that logic or styling.
-- `<TabsContent value="local-charges">` and `<TabsContent value="downloads">`: a centered card panel (rounded border, soft shadow, matching site styling) with the section name as a heading and "Coming soon" plus a one-line note.
-- Tab triggers styled to match the brand (active tab uses brand accent), typography consistent with the rest of the page.
+### 2. Color & contrast
+- Apply a stronger left-to-right gradient scrim over the hero image so the white text pops without losing the photo.
+- Use brand orange (`#FF3700`) as an accent word inside the headline and for the primary CTA.
+- Keep the secondary CTA as a subtle outlined/glass style.
 
-## Technical notes
-- Only `src/routes/network.tsx` changes (plus adding `ui/tabs.tsx` if it isn't present).
-- Filter/pagination state stays as-is and remains scoped to the Agency tab.
+### 3. Layout
+- Keep the content left-aligned but give it more breathing room and a max-width lock.
+- Stack headline → sub-headline → CTA group vertically with generous spacing.
+- Reposition the glass credibility card lower right so it balances the composition instead of floating awkwardly.
+
+### 4. Credibility card
+- Restyle the "Own offices / 6 countries" card with a heavier backdrop blur, subtle border glow, and a small country-count badge.
+- Make it read as a trust block rather than a side note.
+
+### 5. Scroll cue
+- Add a minimal animated scroll indicator at the bottom center to invite users to scroll.
+
+## What will stay the same
+- Background image: `vyom-hero.jpg` (tanktainer stack).
+- Brand palette: `#0047CC`, `#FF3700`, `#2B2A29`.
+- Font family: Inter.
+- Navigation behavior and dynamic light/dark navbar logic.
+
+## Files to modify
+- `src/components/Hero.tsx` — main hero layout, text, CTAs, card, scroll cue.
+- `src/styles.css` — add any new hero-specific tokens or utilities if needed (e.g., stronger scrim gradient, hero text shadow).
+
+## Verification
+- Build passes (`bun run build` or `tsgo`).
+- Screenshot confirms improved contrast, readable headline, and balanced card placement across desktop and mobile viewports.
