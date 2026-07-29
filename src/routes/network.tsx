@@ -151,7 +151,20 @@ function NetworkPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader variant="network" />
       <main className="mx-auto max-w-[90rem] px-5 pb-20 pt-32 sm:px-8 sm:pt-40">
-        <Tabs defaultValue="agency" className="mt-2 flex flex-col items-center">
+        <WorldMap
+          activeLocation={selectedLocation === "all" ? undefined : selectedLocation}
+          onSelect={(marker) => {
+            const hasCountry = agencyNetwork.some((o) => o.country === marker.country);
+            const hasLocation = agencyNetwork.some(
+              (o) => o.country === marker.country && o.location === marker.location,
+            );
+            setSelectedCountry(hasCountry ? marker.country : "all");
+            setSelectedLocation(hasLocation ? marker.location : "all");
+            setPage(1);
+          }}
+        />
+        <Tabs defaultValue="agency" className="mt-10 flex flex-col items-center">
+
           <TabsList className="h-auto flex-wrap gap-1 rounded-xl bg-muted p-1">
             <TabsTrigger value="agency" className="rounded-lg px-4 py-2 text-sm data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-soft">
               Agency
